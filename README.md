@@ -12,7 +12,7 @@
 
 - 发布分支：`codex/site-publish`
 - 流水线文件：`Jenkinsfile`
-- 目标域名：`command.zhiyinhui.top`
+- 正式地址：`https://command.zhiyinhui.top`
 - 目标目录：`/var/www/zhiyinhui-command-center`
 
 流水线会校验静态文件，按 Jenkins 构建号创建独立版本目录，通过原子切换 `current` 发布，并在健康检查失败时恢复上一版本。Nginx 和 HTTPS 属于服务器的一次性基础设施配置，不由流水线修改。

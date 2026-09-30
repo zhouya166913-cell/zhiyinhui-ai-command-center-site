@@ -106,17 +106,17 @@ pipeline {
                     if curl \
                         --http1.1 \
                         --noproxy '*' \
-                        --resolve "${DOMAIN}:80:127.0.0.1" \
+                        --resolve "${DOMAIN}:443:127.0.0.1" \
                         --fail \
                         --silent \
                         --show-error \
                         --max-time 20 \
-                        "http://${DOMAIN}/" \
+                        "https://${DOMAIN}/" \
                         --output "$HEALTH_FILE" \
                         && grep -q '<title>智隐会 · AI经营指挥中心</title>' "$HEALTH_FILE" \
                         && grep -q 'id="root"' "$HEALTH_FILE"
                     then
-                        echo "HTTP 健康检查通过"
+                        echo "HTTPS 健康检查通过"
                         wc -c "$HEALTH_FILE"
                     else
                         echo "健康检查失败，开始回滚"
@@ -156,7 +156,7 @@ pipeline {
 
     post {
         success {
-            echo "部署成功：http://${DOMAIN}"
+            echo "部署成功：https://${DOMAIN}"
         }
 
         failure {
